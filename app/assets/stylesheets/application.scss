@@ -18,3 +18,11 @@
  // $primary-color: color("blue", "lighten-2") !default;
  // $secondary-color: color("yellow", "base") !default;
  @import 'materialize';
+
+ input.select-dropdown {
+     -webkit-user-select:none;
+     -moz-user-select:none;
+     -ms-user-select:none;
+     -o-user-select:none;
+     user-select:none;
+ }
