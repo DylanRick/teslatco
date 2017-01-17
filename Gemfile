@@ -28,6 +28,8 @@ gem 'figaro'
 gem 'httparty', '~> 0.14.0'
 # Making it purrrtyy
 gem 'materialize-sass'
+# for using AJAX in controller\
+gem 'responders', '~> 2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

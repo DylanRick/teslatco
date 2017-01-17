@@ -2,38 +2,30 @@
   <h4> Cost of Ownership Comparison </h4>
   <div>
     <div class="row">
-      <div class="input-field col s12 l3">
-        <select>
-          <%= options_for_select(@make_options) %>
-        </select>
-        <label>Make</label>
+      <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
+        <div class="input-field col s12 l3">
+          <%= select_tag "make_id", options_for_select(@make_options), :format => 'js', :onchange => ("console.log(this.form);") %>
+          <label>Make</label>
+        </div>
+      <% end %>
+
+      <div id="target">
       </div>
+
       <div class="input-field col s12 l3">
-        <select>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-        </select>
+        <%= select_tag "model", "model", :disabled => true %>
         <label>Model</label>
       </div>
       <div class="input-field col s12 l2">
-        <select>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-        </select>
+        <%= select_tag "year", "year", :disabled => true %>
         <label>Year</label>
       </div>
       <div class="input-field col s12 l2">
-        <select>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-        </select>
+        <%= select_tag "Style", "Style", :disabled => true %>
         <label>Style</label>
       </div>
       <div class="input-field col s12 l2">
-        <input id="zipcode" type="text" class="validate">
+        <input id="zipcode" type="text" class="validate" disabled>
         <label for="first_name">Zipcode</label>
       </div>
     </div>

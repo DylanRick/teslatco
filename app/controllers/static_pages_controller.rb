@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   before_action :start_edmund
+  respond_to :html, :js
 
   attr_accessor :edmund
 
@@ -27,13 +28,18 @@ class StaticPagesController < ApplicationController
   #  "link"=>"/audi/a3",
   #  "years"=>{"NEW"=>[2017], "NEW_USED"=>[2016], "USED"=>[2015]}},
   def models
-    models = JSON.parse(edmund.tco_models(params[:make_id]).body)["makes"]
-    options = []
-
-    model.each do |model|
-      nil
-    end
-    @model_options = nil
+    # Rails.logger.info "MEEEEOWWWW"
+    # models = JSON.parse(edmund.tco_models(params[:make_id]).body)["makes"]
+    # options = []
+    #
+    # model.each do |model|
+    #   nil
+    # end
+    # @model_options = nil
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
   end
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
