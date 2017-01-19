@@ -4,7 +4,7 @@
     <div class="row">
       <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
         <div class="input-field col s12 l3">
-          <%= select_tag "make_id", options_for_select(@make_options), :format => 'js', :onchange => ("console.log(this.form);") %>
+          <%= select_tag "make_id", options_for_select(@make_options) %>
           <label>Make</label>
         </div>
       <% end %>
