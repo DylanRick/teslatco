@@ -5,15 +5,7 @@ class StaticPagesController < ApplicationController
   attr_accessor :edmund
 
   def index
-    # makes = JSON.parse(edmund.tco_makes.body)["makes"]
-    makes_json = JSON.parse(File.read("db/makes.json"))["makes"]
-    makes = {}
-    options = []
-    makes_json.each do |make|
-      makes[make[0]] = make[1]
-      options << [ make[1]["name"], make[1]["id"] ]
-    end
-    @make_options = options
+    @makes = Make.all
   end
   # @test = JSON.parse(edmund.tco_models('200000001').body)["models"]
 
@@ -28,18 +20,8 @@ class StaticPagesController < ApplicationController
   #  "link"=>"/audi/a3",
   #  "years"=>{"NEW"=>[2017], "NEW_USED"=>[2016], "USED"=>[2015]}},
   def models
-    # Rails.logger.info "MEEEEOWWWW"
-    # models = JSON.parse(edmund.tco_models(params[:make_id]).body)["makes"]
-    # options = []
-    #
-    # model.each do |model|
-    #   nil
-    # end
-    # @model_options = nil
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
+    make_id = params[:make_id]
+    models_json = @edmund.tco_models(make_id)
   end
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}

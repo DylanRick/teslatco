@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  edmund_id: MyString
+  name: MyString
+  submodel: MyString
+  nicesubmodel: MyString
+  model: MyString
+  nicemodel: MyString
+  model_id: 
+
+two:
+  edmund_id: MyString
+  name: MyString
+  submodel: MyString
+  nicesubmodel: MyString
+  model: MyString
+  nicemodel: MyString
+  model_id: 
