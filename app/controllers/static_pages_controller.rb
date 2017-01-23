@@ -7,7 +7,6 @@ class StaticPagesController < ApplicationController
   def index
     @makes = Make.all
   end
-  # @test = JSON.parse(edmund.tco_models('200000001').body)["models"]
 
   # response
   # "a3:Sedan"=>
