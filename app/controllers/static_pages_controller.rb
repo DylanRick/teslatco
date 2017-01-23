@@ -19,9 +19,17 @@ class StaticPagesController < ApplicationController
   #  "nicemodel"=>"a3",
   #  "link"=>"/audi/a3",
   #  "years"=>{"NEW"=>[2017], "NEW_USED"=>[2016], "USED"=>[2015]}},
+
+  # ummm these are actually submodels
   def models
     make_id = params[:make_id]
-    models_json = @edmund.tco_models(make_id)
+    make = Make.find_by(edmund_id: make_id)
+    make_models = make.models.any? ? make.models : Model.get_models(make)
+    @models = make_models
+  end
+
+  def years
+    @params = params
   end
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}

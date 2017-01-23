@@ -60,12 +60,13 @@ ActiveRecord::Schema.define(version: 20170120042347) do
     t.string   "nice_submodel"
     t.string   "model"
     t.string   "nice_model"
-    t.integer  "model_id"
+    t.string   "years"
+    t.integer  "make_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "models", ["model_id"], name: "index_models_on_model_id", using: :btree
+  add_index "models", ["make_id"], name: "index_models_on_make_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -153,7 +154,7 @@ ActiveRecord::Schema.define(version: 20170120042347) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "looks", "profiles"
-  add_foreign_key "models", "models"
+  add_foreign_key "models", "makes"
   add_foreign_key "products", "brands"
   add_foreign_key "profiles", "accounts"
   add_foreign_key "shades", "products"

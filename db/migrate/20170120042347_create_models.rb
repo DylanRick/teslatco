@@ -7,7 +7,8 @@ class CreateModels < ActiveRecord::Migration
       t.string :nice_submodel
       t.string :model
       t.string :nice_model
-      t.references :model, index: true, foreign_key: true
+      t.string :years
+      t.references :make, index: true, foreign_key: true
 
       t.timestamps null: false
     end

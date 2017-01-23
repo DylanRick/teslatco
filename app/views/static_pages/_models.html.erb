@@ -1,0 +1,6 @@
+<%= form_tag(years_path, :method => 'get', id: "model", :remote => true ) do |f| %>
+  <div class="input-field col s12 l3">
+    <%= select_tag "model_id", options_from_collection_for_select(@models, "submodel", "name") %>
+    <label>Model</label>
+  </div>
+<% end %>

@@ -2,33 +2,36 @@
   <h4> Cost of Ownership Comparison </h4>
   <div>
     <div class="row">
-      <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
+      <div>
+        <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
         <div class="input-field col s12 l3">
           <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
           <label>Make</label>
         </div>
-      <% end %>
-
-      <div id="target">
+        <% end %>
       </div>
-
-      <div class="input-field col s12 l3">
-        <%= select_tag "model", "model", :disabled => true %>
-        <label>Model</label>
+      <div id="make-models">
+        <div class="input-field col s12 l3" id="make-models">
+          <%= select_tag "model_id", "model" %>
+          <label>Model</label>
+        </div>
       </div>
-      <div class="input-field col s12 l2">
-        <%= select_tag "year", "year", :disabled => true %>
-        <label>Year</label>
+      <div id="model-years">
+        <div class="input-field col s12 l2">
+          <%= select_tag "year", "year", :disabled => true %>
+          <label>Year</label>
+        </div>
       </div>
-      <div class="input-field col s12 l2">
-        <%= select_tag "Style", "Style", :disabled => true %>
-        <label>Style</label>
+      <div id="year-styles">
+        <div class="input-field col s12 l2">
+          <%= select_tag "Style", "Style", :disabled => true %>
+          <label>Style</label>
+        </div>
       </div>
       <div class="input-field col s12 l2">
         <input id="zipcode" type="text" class="validate" disabled>
         <label for="first_name">Zipcode</label>
       </div>
     </div>
-  </div>
   <p>Edmund's TCO Disclaimers....</p>
 </div>

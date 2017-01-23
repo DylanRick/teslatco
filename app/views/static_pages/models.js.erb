@@ -1,1 +1,5 @@
-$("#target").innerHtml("<%= raw @models %>")
+$("#make-models").html("<%= j (render partial: 'models') %>");
+$("select").material_select();
+$("#model_id").change(function () {
+  $("#model").submit();
+});
