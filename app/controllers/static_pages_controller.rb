@@ -29,11 +29,13 @@ class StaticPagesController < ApplicationController
   end
 
   def years
-    @params = params
+    model = Model.find(params[:model_id])
+    @years = model.years.split(", ")
   end
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
   def styles
+    @styles = "hiiiiii"
   end
 
   private
