@@ -1,6 +1,37 @@
-<%= form_tag(years_path, :method => 'get', id: "model", :remote => true ) do |f| %>
-  <div class="input-field col s12 l4">
-    <%= select_tag "model_id", options_from_collection_for_select(@models, "id", "name") %>
-    <label>Model</label>
+<div class="row">
+  <div>
+    <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
+    <div class="input-field col s12 l4">
+      <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
+      <label>Make</label>
+    </div>
+    <% end %>
   </div>
-<% end %>
+  <div id="make-models">
+    <%= form_tag(years_path, :method => 'get', id: "model", :remote => true ) do |f| %>
+      <div class="input-field col s12 l4">
+        <%= hidden_field_tag "make", @make.nice_name %>
+        <%= select_tag "model_id", options_from_collection_for_select(@models, "id", "name") %>
+        <label>Model</label>
+      </div>
+    <% end %>
+  </div>
+  <div id="model-years">
+    <div class="input-field col s12 l4">
+      <%= select_tag "year_id", "year" %>
+      <label>Year</label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div id="year-styles">
+    <div class="input-field col s12 l6">
+      <%= select_tag "Style", "Style", :disabled => true %>
+      <label>Style</label>
+    </div>
+  </div>
+  <div class="input-field col s12 l6">
+    <input id="zipcode" type="text" class="validate" disabled>
+    <label for="first_name">Zipcode</label>
+  </div>
+</div>

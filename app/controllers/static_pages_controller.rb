@@ -1,11 +1,12 @@
 class StaticPagesController < ApplicationController
   before_action :start_edmund
   respond_to :html, :js
+  before_action :load_makes, only: [:index, :models]
 
   attr_accessor :edmund
 
   def index
-    @makes = Make.all
+
   end
 
   # response
@@ -21,25 +22,28 @@ class StaticPagesController < ApplicationController
 
   # ummm these are actually submodels
   def models
-    make_id = params[:make_id]
-    make = Make.find_by(edmund_id: make_id)
-    make_models = make.models.any? ? make.models : Model.get_models(make)
+    @make = Make.find_by(edmund_id: params[:make_id])
+    make_models = @make.models.any? ? @make.models : Model.get_models(make)
     @models = make_models
   end
 
   def years
-    model = Model.find(params[:model_id])
-    @years = model.years.split(", ")
+    @model = Model.find(params[:model_id])
+    @years = @model.years.split(", ")
   end
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
   def styles
-    @styles = "hiiiiii"
+    @styles = params
   end
 
   private
 
   def start_edmund
     @edmund = Edmund.new
+  end
+
+  def load_makes
+    @makes = Make.all
   end
 end
