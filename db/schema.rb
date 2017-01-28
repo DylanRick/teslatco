@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120042347) do
+ActiveRecord::Schema.define(version: 20170126031802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,20 @@ ActiveRecord::Schema.define(version: 20170120042347) do
 
   add_index "shades", ["product_id"], name: "index_shades_on_product_id", using: :btree
 
+  create_table "styles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.string   "edmund_id"
+    t.string   "price"
+    t.string   "trim"
+    t.string   "style_long_name"
+    t.integer  "model_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "styles", ["model_id"], name: "index_styles_on_model_id", using: :btree
+
   create_table "tutorials", force: :cascade do |t|
     t.integer "shade_id"
     t.integer "look_id"
@@ -158,4 +172,5 @@ ActiveRecord::Schema.define(version: 20170120042347) do
   add_foreign_key "products", "brands"
   add_foreign_key "profiles", "accounts"
   add_foreign_key "shades", "products"
+  add_foreign_key "styles", "models"
 end

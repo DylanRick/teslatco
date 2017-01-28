@@ -1,9 +1,6 @@
 class StaticPagesController < ApplicationController
-  before_action :start_edmund
-  respond_to :html, :js
   before_action :load_makes, only: [:index, :models]
-
-  attr_accessor :edmund
+  respond_to :html, :js
 
   def index
 
@@ -22,8 +19,8 @@ class StaticPagesController < ApplicationController
 
   # ummm these are actually submodels
   def models
-    @make = Make.find_by(edmund_id: params[:make_id])
-    make_models = @make.models.any? ? @make.models : Model.get_models(make)
+    make = Make.find_by(edmund_id: params[:make_id])
+    make_models = make.models.any? ? make.models : Model.get_models(make)
     @models = make_models
   end
 
@@ -34,14 +31,13 @@ class StaticPagesController < ApplicationController
 
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
   def styles
-    @styles = params
+    submodel = Model.find(params[:submodel])
+    year_styles = submodel.styles.where(year: params[:year])
+    @styles = year_styles.any? ? year_styles : Style.get_styles(submodel, params[:year])
+    #TODO Need to get errors if reaches out to database and doesnt find records!!!
   end
 
   private
-
-  def start_edmund
-    @edmund = Edmund.new
-  end
 
   def load_makes
     @makes = Make.all

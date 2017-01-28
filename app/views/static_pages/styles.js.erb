@@ -1,4 +1,14 @@
-$("#year-styles").html("<%= @styles %>")
+$("#year-styles").html("<%= j (render partial: 'styles') %>")
+$("select").material_select();
+$("#make_id").change(function () {
+  $("#make").submit()
+});
+$("#model_id").change(function () {
+  $("#model").submit();
+});
+$("#year").change(function () {
+  $("#year").submit();
+});
 // $("select").material_select();
 // $('#make_id').change(function () {
 //   $('#make').submit()

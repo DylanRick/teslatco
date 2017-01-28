@@ -1,8 +1,6 @@
 <%= form_tag(styles_path, :method => 'get', id: "year", :remote => true ) do |f| %>
   <div class="input-field col s12 l4">
-    <%= hidden_field_tag "make", params[:make] %>
-    <%= hidden_field_tag "model", @model.nice_model %>
-    <%= hidden_field_tag "submodel", @model.nice_submodel %>
+    <%= hidden_field_tag "submodel", @model.id %>
     <%= select_tag "year", options_for_select(@years) %>
     <label>Year</label>
   </div>

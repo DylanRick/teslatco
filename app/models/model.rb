@@ -1,6 +1,8 @@
 class Model < ActiveRecord::Base
   belongs_to :make
 
+  has_many :styles
+
   def self.get_models(make)
     models_json = Edmund.new.tco_models(make.edmund_id)["models"]
     models_json.each do |model|

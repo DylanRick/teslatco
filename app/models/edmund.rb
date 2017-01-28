@@ -16,15 +16,29 @@ class Edmund
 
   # https://api.edmunds.com/v1/api/tco/getstyleswithtcodatabysubmodel?make=
   # acura&model=zdx&year=2011&submodel=hatchback&fmt=json&api_key={api key}
-  def tco_styles(submodel_id, year)
-    # can get submodel and model from submodel
-    # need make name
-    # need year
-    submodel = Model.find(submodel_id)
-    model = submodel.name
+
+  # TODO figure out what to do when quote is met on API key
+  def tco_styles(make, model, year, submodel)
+    self.class.get(
+      '/v1/api/tco/getstyleswithtcodatabysubmodel?',
+      {
+        query: {
+          make: make,
+          model: model,
+          year: year,
+          submodel: submodel
+        }
+      }
+    )
   end
-  # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
-  # def tco_styles(make_id, model)
-  #   self.class.get("/api/vehicle/v2/#{make_id.downcase}/civic?")
-  # end
+
+  # https://api.edmunds.com/v1/api/tco/newtruecosttoownbystyleidandzip/{style ID}/{zipcode}?fmt=json&api_key={api key}
+  def new_tco(style_id, zipcode)
+    self.class.get("/v1/api/tco/newtruecosttoownbystyleidandzip/#{style_id}/#{zipcode}?")
+  end
+
+  # https://api.edmunds.com/v1/api/tco/usedtruecosttoownbystyleidandzip/101426944/90019?fmt=json&api_key={api key}
+  def used_tco(style_id, zipcode)
+    self.class("/v1/api/tco/usedtruecosttoownbystyleidandzip/#{style_id}/#{zipcode}?")
+  end
 end
