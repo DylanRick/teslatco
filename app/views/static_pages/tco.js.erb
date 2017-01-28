@@ -1,4 +1,4 @@
-$("#year-styles").html("<%= j (render partial: 'styles') %>")
+$("#results").html("<%= j (render partial: 'tco') %>")
 $("select").material_select();
 $("#make_id").change(function () {
   $("#make").submit()
@@ -8,7 +8,4 @@ $("#model_id").change(function () {
 });
 $("#year").change(function () {
   $("#year").submit();
-});
-$("#submit_style").click(function () {
-  $("#style_form").submit();
 });

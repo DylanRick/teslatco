@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "styles" => "static_pages#styles"
 
+  get "tco" => "static_pages#tco"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -32,13 +32,13 @@ class Edmund
     )
   end
 
-  # https://api.edmunds.com/v1/api/tco/newtruecosttoownbystyleidandzip/{style ID}/{zipcode}?fmt=json&api_key={api key}
-  def new_tco(style_id, zipcode)
-    self.class.get("/v1/api/tco/newtruecosttoownbystyleidandzip/#{style_id}/#{zipcode}?")
+  # https://api.edmunds.com/api/tco/v1/details/allnewtcobystyleidzipandstate/{style ID}/{zipcode}/{US State Code}?fmt=json&api_key={api key}
+  def new_tco(style_id, zipcode, state_code)
+    self.class.get("/api/tco/v1/details/allnewtcobystyleidzipandstate/#{style_id}/#{zipcode}/#{state_code}?")
   end
 
-  # https://api.edmunds.com/v1/api/tco/usedtruecosttoownbystyleidandzip/101426944/90019?fmt=json&api_key={api key}
-  def used_tco(style_id, zipcode)
-    self.class("/v1/api/tco/usedtruecosttoownbystyleidandzip/#{style_id}/#{zipcode}?")
+  # https://api.edmunds.com/api/tco/v1/details/allusedtcobystyleidzipandstate/{style ID}/{zipcode}/{US State Code}?fmt=json&api_key={api key}
+  def used_tco(style_id, zipcode, state_code)
+    self.class("/api/tco/v1/details/allusedtcobystyleidzipandstate/#{style_id}/#{zipcode}/#{state_code}?")
   end
 end

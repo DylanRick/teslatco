@@ -32,9 +32,15 @@ class StaticPagesController < ApplicationController
   # https://api.edmunds.com/api/vehicle/v2/honda/civic?state=used&fmt=json&api_key={api key}
   def styles
     submodel = Model.find(params[:submodel])
+    @year = params[:year]
     year_styles = submodel.styles.where(year: params[:year])
     @styles = year_styles.any? ? year_styles : Style.get_styles(submodel, params[:year])
     #TODO Need to get errors if reaches out to database and doesnt find records!!!
+  end
+
+  def tco
+    @tco = params
+    # tco_results = Edmund.new
   end
 
   private
