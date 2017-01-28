@@ -39,9 +39,17 @@ class StaticPagesController < ApplicationController
   end
 
   def tco
-    @tco = params
-    # tco_results = Edmund.new
+    @tco = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
   end
+
+ #  {"insurance"=>{"values"=>[821.0, 846.0, 871.0, 897.0, 924.0], "total"=>4359.0},
+ # "maintenance"=>{"values"=>[384.0, 1811.0, 816.0, 926.0, 1434.0], "total"=>5371.0},
+ # "repairs"=>{"values"=>[306.0, 468.0, 502.0, 538.0, 577.0], "total"=>2391.0},
+ # "taxandfees"=>{"values"=>[1127.0, 154.0, 154.0, 154.0, 154.0], "total"=>1743.0},
+ # "financing"=>{"values"=>[689.0, 550.0, 404.0, 251.0, 90.0], "total"=>1984.0},
+ # "depreciation"=>{"values"=>[3205.0, 1580.0, 1391.0, 1232.0, 1106.0], "total"=>8514.0},
+ # "fuel"=>{"values"=>[1329.0, 1369.0, 1410.0, 1453.0, 1496.0], "total"=>7057.0},
+ # "taxcredit"=>0.0}
 
   private
 

@@ -7,6 +7,9 @@ class Style < ActiveRecord::Base
     model = submodel.nice_model
     make = submodel.make.nice_name
     styles_json = Edmund.new.tco_styles(make, model, year, submodel.nice_submodel)["styles"]
+    return nil if styles_json.nil?
+    return {} if styles_json.empty?
+
     styles_json.each do |style|
       style_info = style[1]
       # TODO need to do find or create by since a style could belong to more than one year?

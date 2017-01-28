@@ -30,6 +30,7 @@ class Edmund
         }
       }
     )
+    # {"styles" => {}}
   end
 
   # https://api.edmunds.com/api/tco/v1/details/allnewtcobystyleidzipandstate/{style ID}/{zipcode}/{US State Code}?fmt=json&api_key={api key}
@@ -39,6 +40,6 @@ class Edmund
 
   # https://api.edmunds.com/api/tco/v1/details/allusedtcobystyleidzipandstate/{style ID}/{zipcode}/{US State Code}?fmt=json&api_key={api key}
   def used_tco(style_id, zipcode, state_code)
-    self.class("/api/tco/v1/details/allusedtcobystyleidzipandstate/#{style_id}/#{zipcode}/#{state_code}?")
+    self.class.get("/api/tco/v1/details/allusedtcobystyleidzipandstate/#{style_id}/#{zipcode}/#{state_code}?")
   end
 end

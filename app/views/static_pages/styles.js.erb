@@ -1,14 +1,22 @@
-$("#year-styles").html("<%= j (render partial: 'styles') %>")
-$("select").material_select();
-$("#make_id").change(function () {
-  $("#make").submit()
-});
-$("#model_id").change(function () {
-  $("#model").submit();
-});
-$("#year").change(function () {
-  $("#year").submit();
-});
-$("#submit_style").click(function () {
-  $("#style_form").submit();
-});
+<% if @styles.nil? %>
+  <% flash[:alert] = "Run out of data. Try again tomorrow." %>
+  window.location.reload()
+<% elsif !@styles.nil? && @styles.empty? %>
+  <% flash[:alert] = "TCO data not found for this model. Try again." %>
+  window.location.reload()
+<% else %>
+  $("#year-styles").html("<%= j (render partial: 'styles') %>")
+  $("select").material_select();
+  $("#make_id").change(function () {
+    $("#make").submit()
+  });
+  $("#model_id").change(function () {
+    $("#model").submit();
+  });
+  $("#year").change(function () {
+    $("#year").submit();
+  });
+  $("#submit_style").click(function () {
+    $("#style_form").submit();
+  });
+<% end %>

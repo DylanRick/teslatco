@@ -1,10 +1,13 @@
 <div class="container">
-  <h4> Cost of Ownership Comparison </h4>
+  <h4 class="center-align"> COST OF OWNERSHIP COMPARISON </h4>
+  <% if alert %>
+    <p class="flash red darken-3 center-align" id="alert"><%= alert %></p>
+  <% end %>
   <div>
     <div class="car-form">
       <div class="row">
         <div>
-          <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do |f| %>
+          <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do %>
             <div class="input-field col s12 l4">
               <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
               <label>Make</label>
@@ -24,7 +27,7 @@
           </div>
         </div>
       </div>
-      <%= form_tag(tco_path, :method => 'get', :id => 'style_form', :remote => true ) do |e| %>
+      <%= form_tag(tco_path, :method => 'get', :id => 'style_form', :remote => true ) do %>
         <div class="row">
           <div id="year-styles">
             <div class="input-field col s12 l6">
@@ -33,11 +36,11 @@
             </div>
           </div>
           <div class="input-field col s12 l3">
-            <input id="zipcode" type="text" class="validate">
+            <%= text_field_tag :zipcode, "", class: "validate" %>
             <label for="zipcode">Zipcode</label>
           </div>
           <div class="input-field col s12 l3">
-            <input id="state_code" type="text" class="validate">
+            <%= text_field_tag :state_code, "", class: "validate" %>
             <label for="state_code">State (e.g. UT)</label>
           </div>
         </div>
@@ -47,7 +50,6 @@
       <% end %>
     </div>
   </div>
-  <p>Edmund's TCO Disclaimers....</p>
 </div>
 
 <div id="results" class="container">
