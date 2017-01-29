@@ -7,51 +7,49 @@
     <p class="flash red darken-3 center-align" id="alert"><%= alert %></p>
   <% end %>
   <div>
-    <div class="car-form">
-      <div class="row">
-        <div>
-          <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do %>
-            <div class="input-field col s12 l4">
-              <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
-              <label>Make</label>
-            </div>
-          <% end %>
-        </div>
-        <div id="make-models">
-          <div class="input-field col s12 l4" id="make-models">
-            <%= select_tag "model_id", "model" %>
-            <label>Model</label>
-          </div>
-        </div>
-        <div id="model-years">
+    <div class="row">
+      <div>
+        <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do %>
           <div class="input-field col s12 l4">
-            <%= select_tag "year_id", "year" %>
-            <label>Year</label>
+            <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
+            <label>Make</label>
           </div>
+        <% end %>
+      </div>
+      <div id="make-models">
+        <div class="input-field col s12 l4" id="make-models">
+          <%= select_tag "model_id", "model", :disabled => true %>
+          <label>Model</label>
         </div>
       </div>
-      <%= form_tag(tco_path, :method => 'get', :id => 'style_form', :remote => true ) do %>
-        <div class="row">
-          <div id="year-styles">
-            <div class="input-field col s12 l6">
-              <%= select_tag "style_id", "style", :disabled => true %>
-              <label>Style</label>
-            </div>
-          </div>
-          <div class="input-field col s12 l3">
-            <%= text_field_tag :zipcode, "", class: "validate" %>
-            <label for="zipcode">Zipcode</label>
-          </div>
-          <div class="input-field col s12 l3">
-            <%= text_field_tag :state_code, "", class: "validate" %>
-            <label for="state_code">State (e.g. UT)</label>
-          </div>
+      <div id="model-years">
+        <div class="input-field col s12 l4">
+          <%= select_tag "year_id", "year", :disabled => true %>
+          <label>Year</label>
         </div>
-        <div class="row center-align">
-          <a id="submit_style" class="waves-effect waves-light red darken-3 btn">get tco</a>
-        </div>
-      <% end %>
+      </div>
     </div>
+    <%= form_tag(tco_path, :method => 'get', :id => 'style_form', :remote => true ) do %>
+      <div class="row">
+        <div id="year-styles">
+          <div class="input-field col s12 l6">
+            <%= select_tag "style_id", "style", :disabled => true %>
+            <label>Style</label>
+          </div>
+        </div>
+        <div class="input-field col s12 l3">
+          <%= text_field_tag :zipcode, "", class: "validate", :disabled => true %>
+          <label for="zipcode">Zipcode</label>
+        </div>
+        <div class="input-field col s12 l3">
+          <%= text_field_tag :state_code, "", class: "validate", :disabled => true %>
+          <label for="state_code">State (e.g. UT)</label>
+        </div>
+      </div>
+      <div class="row center-align">
+        <a id="submit_style" class="waves-effect waves-light red darken-3 btn">get tco</a>
+      </div>
+    <% end %>
   </div>
 </div>
 

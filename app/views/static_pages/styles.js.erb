@@ -6,17 +6,18 @@
   window.location.reload()
 <% else %>
   $("#year-styles").html("<%= j (render partial: 'styles') %>")
-  $("select").material_select();
-  $("#make_id").change(function () {
-    $("#make").submit()
-  });
-  $("#model_id").change(function () {
-    $("#model").submit();
-  });
-  $("#year").change(function () {
-    $("#year").submit();
-  });
-  $("#submit_style").click(function () {
-    $("#style_form").submit();
-  });
 <% end %>
+$("select").material_select();
+$("#make_id").change(function () {
+  $("#make").submit()
+});
+$("#model_id").change(function () {
+  $("#model").submit();
+});
+$("#year").change(function () {
+  $("#year").submit();
+});
+$(".validate").removeAttr("disabled");
+$("#submit_style").click(function () {
+  $("#style_form").submit();
+});
