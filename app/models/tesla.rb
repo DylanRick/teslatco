@@ -5,7 +5,8 @@ class Tesla < ActiveRecord::Base
   validates_presence_of :model, :trim, :price
 
   def calculate_financing
-    self.financing = LoanCalculator.new(principal: self.price).total_interest
+    loan_amount = self.price * BigDecimal.new("0.9")
+    self.financing = LoanCalculator.new(principal: loan_amount).total_interest
   end
 
   def update_total

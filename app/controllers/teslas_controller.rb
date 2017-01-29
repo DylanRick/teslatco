@@ -1,4 +1,6 @@
 class TeslasController < ApplicationController
+  layout "teslas_layout"
+
   before_action :set_tesla, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,14 +22,14 @@ class TeslasController < ApplicationController
     if @tesla.save
       redirect_to teslas_path, notice: 'Tesla was successfully created.'
     else
-      redirect_to teslas_path, alert: 'Unable to add tesla.'
+      render :new, alert: 'Unable to add tesla.'
     end
   end
 
   def update
     respond_to do |format|
       if @tesla.update(tesla_params)
-        format.html { redirect_to @tesla, notice: 'Tesla was successfully updated.' }
+        format.html { redirect_to teslas_path, notice: 'Tesla was successfully updated.' }
         format.json { render :show, status: :ok, location: @tesla }
       else
         format.html { render :edit }
