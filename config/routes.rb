@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'teslas/index'
+
+  get 'teslas/new'
+
+  get 'teslas/create'
+
+  get 'teslas/update'
+
+  get 'teslas/delete'
+
   root "static_pages#index"
 
   get "models" => "static_pages#models"
@@ -9,6 +19,8 @@ Rails.application.routes.draw do
   get "styles" => "static_pages#styles"
 
   get "tco" => "static_pages#tco"
+
+  resources :teslas
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

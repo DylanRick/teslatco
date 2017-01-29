@@ -1,0 +1,55 @@
+<%= form_for(@tesla) do |f| %>
+
+  <% if @tesla.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tesla.errors.count, "error") %> prohibited this tesla from being saved:</h2>
+      <ul>
+      <% @tesla.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12 l12">
+    <%= f.text_field :model %>
+    <%= f.label "Model" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.text_field :trim %>
+    <%= f.label "Trim" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :price %>
+    <%= f.label "Price" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :insurance %>
+    <%= f.label "5-year Insurance Cost" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :maintenance %>
+    <%= f.label "5-year Maintenance Cost" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :taxes_and_fees %>
+    <%= f.label "5-year Taxes and Fees Cost" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :financing %>
+    <%= f.label "5-year Financing Cost (Automatically calculated if left at 0)" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :depreciation %>
+    <%= f.label "5-year Depreciation Cost" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :fuel %>
+    <%= f.label "5-year Energy Cost" %>
+  </div>
+  <div class="input-field col s12 l12">
+    <%= f.number_field :tax_credit %>
+    <%= f.label "5-year Tax Credit (Incentive)" %>
+  </div>
+  <%= f.submit %>
+<% end %>

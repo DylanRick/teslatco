@@ -1,0 +1,42 @@
+<div class="container">
+  <h4>Tesla Info</h4>
+  <table class="striped">
+    <thead>
+      <th>Model</th>
+      <th>Trim</th>
+      <th>Price</th>
+      <th>Insurance</th>
+      <th>Maintenance</th>
+      <th>Taxes and Fees</th>
+      <th>Financing</th>
+      <th>Depriciation</th>
+      <th>Fuel (Energy)</th>
+      <th>Tax Credit (Incentive)</th>
+      <th>Total</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @teslas.each do |tesla| %>
+      <tr>
+        <td><%= tesla.model %></td>
+        <td><%= tesla.trim %></td>
+        <td><%= number_to_currency(tesla.price) %></td>
+        <td><%= number_to_currency(tesla.insurance) %></td>
+        <td><%= number_to_currency(tesla.maintenance )%></td>
+        <td><%= number_to_currency(tesla.taxes_and_fees) %></td>
+        <td><%= number_to_currency(tesla.financing) %></td>
+        <td><%= number_to_currency(tesla.depreciation) %></td>
+        <td><%= number_to_currency(tesla.fuel) %></td>
+        <td><%= number_to_currency(tesla.tax_credit) %></td>
+        <td><%= number_to_currency(tesla.total) %></td>
+        <td><%= link_to "Edit", edit_tesla_path(tesla) %>
+            <%= link_to "Delete", tesla_path(tesla), method: "delete" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to "New", new_tesla_path %>
+  </div>
+</div>

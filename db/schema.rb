@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126031802) do
+ActiveRecord::Schema.define(version: 20170129022009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,22 @@ ActiveRecord::Schema.define(version: 20170126031802) do
   end
 
   add_index "styles", ["model_id"], name: "index_styles_on_model_id", using: :btree
+
+  create_table "teslas", force: :cascade do |t|
+    t.string   "model"
+    t.string   "trim"
+    t.decimal  "price",          precision: 8, scale: 2
+    t.decimal  "insurance",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "maintenance",    precision: 8, scale: 2, default: 0.0
+    t.decimal  "taxes_and_fees", precision: 8, scale: 2, default: 0.0
+    t.decimal  "financing",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "depreciation",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "fuel",           precision: 8, scale: 2, default: 0.0
+    t.decimal  "tax_credit",     precision: 8, scale: 2, default: 0.0
+    t.decimal  "total",          precision: 8, scale: 2
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+  end
 
   create_table "tutorials", force: :cascade do |t|
     t.integer "shade_id"
