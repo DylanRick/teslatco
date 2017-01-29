@@ -9,6 +9,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <div class="nav-wrapper red darken-3">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "Back to App", root_path %></li>
+        <li><%= link_to "Models", teslas_path %></li>
+        <li><%= link_to "State Incentives", incentives_path %></li>
+      </ul>
+    </div>
+  </nav>
+
   <% flash.each do |key, value| %>
     <div class="container">
   		<p id='<%= key %>'><%= value %></p>

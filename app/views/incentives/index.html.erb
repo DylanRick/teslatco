@@ -1,0 +1,23 @@
+<div class="container">
+  <h4  class="center-align">STATE INCENTIVES</h4>
+  <table class="striped">
+    <thead>
+      <th>State Name</th>
+      <th>State Code</th>
+      <th>State Incentive</th>
+    </thead>
+    <tbody>
+      <% @incentives.each do |incentive| %>
+      <tr>
+        <td><%= incentive.state %></td>
+        <td><%= incentive.state_code %></td>
+        <td><%= number_to_currency(incentive.amount) %></td>
+        <td><%= link_to "Delete", incentive_path(incentive), method: "delete" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to "New", new_incentive_path %>
+  </div>
+</div>

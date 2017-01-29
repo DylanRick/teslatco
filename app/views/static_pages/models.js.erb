@@ -1,4 +1,9 @@
-$("#make-models").html("<%= j (render partial: 'models') %>");
+<% if @models.nil? %>
+  <% flash[:alert] = "Run out of data. Try again tomorrow." %>
+  window.location.reload()
+<% else %>
+  $("#make-models").html("<%= j (render partial: 'models') %>");
+<% end %>
 $("select").material_select();
 $("#make_id").change(function () {
   $("#make").submit()

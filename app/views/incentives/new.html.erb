@@ -1,0 +1,30 @@
+<div class="container">
+  <h4>New Incentive</h4>
+  <%= form_for(@incentive) do |f| %>
+
+    <% if @incentive.errors.any? %>
+      <div id="error_explanation">
+        <p><%= pluralize(@incentive.errors.count, "error") %> prohibited this incentive from being saved:</p>
+        <ul>
+        <% @incentive.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-field col s12 l12">
+      <%= f.text_field :state %>
+      <%= f.label "State Name" %>
+    </div>
+    <div class="input-field col s12 l12">
+      <%= f.text_field :state_code %>
+      <%= f.label "State Code" %>
+    </div>
+    <div class="input-field col s12 l12">
+      <%= f.number_field :amount %>
+      <%= f.label "Amount" %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
