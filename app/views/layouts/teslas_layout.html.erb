@@ -11,7 +11,13 @@
 <body>
   <nav>
     <div class="nav-wrapper red darken-3">
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to "Back to App", root_path %></li>
+        <li><%= link_to "Models", teslas_path %></li>
+        <li><%= link_to "State Incentives", incentives_path %></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
         <li><%= link_to "Back to App", root_path %></li>
         <li><%= link_to "Models", teslas_path %></li>
         <li><%= link_to "State Incentives", incentives_path %></li>
@@ -26,6 +32,8 @@
 	<% end %>
 
   <%= yield %>
-
+<script>
+  $('.button-collapse').sideNav();
+</script>
 </body>
 </html>
