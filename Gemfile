@@ -28,8 +28,10 @@ gem 'figaro'
 gem 'httparty', '~> 0.14.0'
 # Making it purrrtyy
 gem 'materialize-sass'
-# for using AJAX in controller\
+# for using AJAX in controller am i using this?
 gem 'responders', '~> 2.0'
+# js charts for display of data
+gem 'chart-js-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
