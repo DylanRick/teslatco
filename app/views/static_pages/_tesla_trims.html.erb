@@ -1,0 +1,10 @@
+<%= form_tag(tco_path, :method => 'get', :id => 'tesla_model_form', :remote => true ) do %>
+  <div class="input-field col s12 l6">
+    <%= hidden_field_tag "year", @params[:year] %>
+    <%= hidden_field_tag "style_id", @params[:style_id] %>
+    <%= hidden_field_tag "zipcode", @params[:zipcode] %>
+    <%= hidden_field_tag "state_code", @params[:state_code] %>
+    <%= select_tag "tesla_trim", options_from_collection_for_select(@trims, "id", "trim")%>
+    <label>Trim</label>
+  </div>
+<% end %>

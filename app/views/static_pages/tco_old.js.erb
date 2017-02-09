@@ -1,0 +1,16 @@
+<% if @tco.code != "200" %>
+  <% flash[:alert] = "Run out of data. Try again tomorrow." %>
+  window.location.reload()
+<% else %>
+  $("#results").html("<%= j (render partial: 'tco') %>")
+<% end %>
+$("select").material_select();
+$("#make_id").change(function () {
+  $("#make").submit()
+});
+$("#model_id").change(function () {
+  $("#model").submit();
+});
+$("#year").change(function () {
+  $("#year").submit();
+});

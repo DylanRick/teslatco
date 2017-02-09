@@ -35,22 +35,24 @@ class StaticPagesController < ApplicationController
     @styles = year_styles.any? ? year_styles : Style.get_styles(submodel, params[:year])
   end
 
-  def tco
-    @tco = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
+  # in progress
+  def tesla_trims
+    @params = params
+    @trims = Tesla.where(model: params[:tesla_model])
   end
 
- #  {"insurance"=>{"values"=>[821.0, 846.0, 871.0, 897.0, 924.0], "total"=>4359.0},
- # "maintenance"=>{"values"=>[384.0, 1811.0, 816.0, 926.0, 1434.0], "total"=>5371.0},
- # "repairs"=>{"values"=>[306.0, 468.0, 502.0, 538.0, 577.0], "total"=>2391.0},
- # "taxandfees"=>{"values"=>[1127.0, 154.0, 154.0, 154.0, 154.0], "total"=>1743.0},
- # "financing"=>{"values"=>[689.0, 550.0, 404.0, 251.0, 90.0], "total"=>1984.0},
- # "depreciation"=>{"values"=>[3205.0, 1580.0, 1391.0, 1232.0, 1106.0], "total"=>8514.0},
- # "fuel"=>{"values"=>[1329.0, 1369.0, 1410.0, 1453.0, 1496.0], "total"=>7057.0},
- # "taxcredit"=>0.0}
+  def tco
+    
+    # @tco = params
+    # @tco = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
+  end
+  # "utf8"=>"✓", "year"=>"2011", "style_id"=>"acura_nice_submodel_1_edmund_id_1", "zipcode"=>"e",
+  # "state_code"=>"d", "tesla_model"=>"60", "tesla_trim"=>"6"
 
   private
 
   def load_makes
     @makes = Make.all
+    @teslas = Tesla.pluck(:model).uniq
   end
 end

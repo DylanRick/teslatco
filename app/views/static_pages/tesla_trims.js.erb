@@ -1,0 +1,5 @@
+$("#tesla_trims").html("<%= j (render partial: 'tesla_trims') %>")
+$("select").material_select();
+$("#submit_tco").click(function () {
+  $("#tco_form").submit();
+});

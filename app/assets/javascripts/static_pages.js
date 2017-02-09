@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log(this)
   var ctx = document.getElementById('myChart');
   var myChart = new Chart(ctx, {
     type: 'bar',

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "tco" => "static_pages#tco"
 
+  get "tesla_trims" => "static_pages#tesla_trims"
+
   resources :teslas
   resources :incentives
 

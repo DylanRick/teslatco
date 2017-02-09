@@ -12,6 +12,16 @@
 
 <%= yield %>
 
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Error</h4>
+    <p>Something went wrong</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Okay</a>
+  </div>
+</div>
+
 <script>
   $('select').material_select();
   $('#make_id').change(function () {

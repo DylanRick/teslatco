@@ -1,35 +1,41 @@
 <div class="container">
+  <div class="right-align">
+    <%= link_to "Enter Tesla Info Here!", teslas_path, class: "right-align" %>
+  </div>
+
   <div class="center-align">
     <img class="center-align" src="http://www.car-brand-names.com/wp-content/uploads/2015/05/Tesla-Motors-symbol.png" alt="" width="200">
   </div>
   <h4 class="center-align title"> COST OF OWNERSHIP COMPARISON </h4>
   <% if alert %>
-    <p class="flash red darken-3 center-align" id="alert"><%= alert %></p>
+    <p class="flash red center-align" id="alert"><%= alert %></p>
   <% end %>
+
   <div>
-    <div class="row">
-      <div>
-        <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do %>
-          <div class="input-field col s12 l4">
-            <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
-            <label>Make</label>
+      <div class="row">
+        <p class="other">Your Vehicle</p>
+        <div>
+          <%= form_tag(models_path, :method => 'get', :id => 'make', :remote => true ) do %>
+            <div class="input-field col s12 l4">
+              <%= select_tag "make_id", options_from_collection_for_select(@makes, "edmund_id", "name") %>
+              <label>Make</label>
+            </div>
+          <% end %>
+        </div>
+        <div id="make-models">
+          <div class="input-field col s12 l4" id="make-models">
+            <%= select_tag "model_id", "model", :disabled => true %>
+            <label>Model</label>
           </div>
-        <% end %>
-      </div>
-      <div id="make-models">
-        <div class="input-field col s12 l4" id="make-models">
-          <%= select_tag "model_id", "model", :disabled => true %>
-          <label>Model</label>
+        </div>
+        <div id="model-years">
+          <div class="input-field col s12 l4">
+            <%= select_tag "year_id", "year", :disabled => true %>
+            <label>Year</label>
+          </div>
         </div>
       </div>
-      <div id="model-years">
-        <div class="input-field col s12 l4">
-          <%= select_tag "year_id", "year", :disabled => true %>
-          <label>Year</label>
-        </div>
-      </div>
-    </div>
-    <%= form_tag(tco_path, :method => 'get', :id => 'style_form', :remote => true ) do %>
+    <%= form_tag(tesla_trims_path, :method => 'get', :id => 'tesla_model_form', :remote => true ) do %>
       <div class="row">
         <div id="year-styles">
           <div class="input-field col s12 l6">
@@ -46,12 +52,25 @@
           <label for="state_code">State (e.g. UT)</label>
         </div>
       </div>
-      <div class="row center-align">
-        <a id="submit_style" class="waves-effect waves-light red darken-3 btn">get tco</a>
-      </div>
+      <div class="row">
+        <p class="tesla">Your Tesla</p>
+          <div class="input-field col s12 l6">
+            <%= select_tag "tesla_model", options_for_select(@teslas) %>
+            <label>Model</label>
+          </div>
     <% end %>
+        <div id="tesla_trims">
+          <div class="input-field col s12 l6">
+            <%= select_tag "tesla_trim", options_for_select(@teslas), :disabled => true %>
+            <label>Trim</label>
+          </div>
+        </div>
+      </div>
+
+    <div class="row center-align">
+      <button id="submit_tco" class="waves-effect waves-light red darken-3 btn">compare!</button>
+    </div>
   </div>
-  <%= link_to "Enter Tesla Info Here!", teslas_path %>
 </div>
 <div id="results" class="container">
 </div>
