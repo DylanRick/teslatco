@@ -1,4 +1,4 @@
-$("#tesla_trims").html("<%= j (render partial: 'tesla_trims') %>")
+$("#tesla_models").html("<%= j (render partial: 'tesla_models') %>")
 
 $("select").material_select();
 $("#make_id").change(function () {
@@ -13,10 +13,7 @@ $("#year").change(function () {
 $(".tesla-models").change(function () {
   $("#tesla_models_form").submit();
 });
+
 $("#tesla_model").change(function () {
   $("#tesla_trims_form").submit();
-});
-
-$("#submit_tco").click(function () {
-  $("#tco_form").submit();
 });

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "styles" => "static_pages#styles"
 
+  get "tesla_models" => "static_pages#tesla_models"
+
   get "tco" => "static_pages#tco"
 
   get "tesla_trims" => "static_pages#tesla_trims"

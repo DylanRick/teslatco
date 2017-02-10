@@ -18,6 +18,8 @@ $("#year").change(function () {
   $("#year").submit();
 });
 $(".validate").removeAttr("disabled");
-$("#tesla_model").change(function () {
-  $("#tesla_model_form").submit();
+
+$(".tesla-models").change(function () {
+  console.log('change!')
+  $("#tesla_models_form").submit();
 });

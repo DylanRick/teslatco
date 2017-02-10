@@ -3,7 +3,7 @@ $(document).ready(function () {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ["Insurance", "Maintenance", "Taxes and Fees", "Financing", "Depreciation", "Fuel", "Tax Credit"],
+      labels: ["Insurance", "Maintenance", "Taxes and Fees", "Financing", "Depreciation", "Fuel", "Tax Credit"], //insert column values here
       datasets: [{
         label: 'Other Car',
         data: [1500, 1700, 500, 7000, 800, 800, 0], //insert tco values here

@@ -35,30 +35,33 @@
           </div>
         </div>
       </div>
-    <%= form_tag(tesla_trims_path, :method => 'get', :id => 'tesla_model_form', :remote => true ) do %>
-      <div class="row">
-        <div id="year-styles">
-          <div class="input-field col s12 l6">
-            <%= select_tag "style_id", "style", :disabled => true %>
-            <label>Style</label>
+      <%= form_tag(tesla_models_path, :method => 'get', :id => 'tesla_models_form', :remote => true ) do %>
+        <div class="row">
+          <div id="year-styles">
+            <div class="input-field col s12 l6">
+              <%= select_tag "style_id", "style", class: "tesla-models", :disabled => true %>
+              <label>Style</label>
+            </div>
+          </div>
+          <div class="input-field col s12 l3">
+            <%= text_field_tag :zipcode, "", class: "validate tesla-models", :disabled => true %>
+            <label for="zipcode">Zipcode</label>
+          </div>
+          <div class="input-field col s12 l3">
+            <%= text_field_tag :state_code, "", class: "validate tesla-models", :disabled => true %>
+            <label for="state_code">State (e.g. UT)</label>
           </div>
         </div>
-        <div class="input-field col s12 l3">
-          <%= text_field_tag :zipcode, "", class: "validate", :disabled => true %>
-          <label for="zipcode">Zipcode</label>
-        </div>
-        <div class="input-field col s12 l3">
-          <%= text_field_tag :state_code, "", class: "validate", :disabled => true %>
-          <label for="state_code">State (e.g. UT)</label>
-        </div>
-      </div>
+      <% end %>
+
       <div class="row">
         <p class="tesla">Your Tesla</p>
+        <div id="tesla_models">
           <div class="input-field col s12 l6">
-            <%= select_tag "tesla_model", options_for_select(@teslas) %>
+            <%= select_tag "tesla_model", options_for_select(@teslas), :disabled => true %>
             <label>Model</label>
           </div>
-    <% end %>
+        </div>
         <div id="tesla_trims">
           <div class="input-field col s12 l6">
             <%= select_tag "tesla_trim", options_for_select(@teslas), :disabled => true %>

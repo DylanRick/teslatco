@@ -1,6 +1,6 @@
 
   <div class="input-field col s12 l6">
     <%= hidden_field_tag "year", @year %>
-    <%= select_tag "style_id", options_from_collection_for_select(@styles, "edmund_id", "name") %>
+    <%= select_tag "style_id", options_from_collection_for_select(@styles, "edmund_id", "name"), class: "tesla-models" %>
     <label>Style</label>
   </div>

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :load_makes, only: [:index, :models]
+  before_action :load_makes
   respond_to :html, :js
 
   def index
@@ -35,6 +35,10 @@ class StaticPagesController < ApplicationController
     @styles = year_styles.any? ? year_styles : Style.get_styles(submodel, params[:year])
   end
 
+  def tesla_models
+    @params = params
+  end
+
   # in progress
   def tesla_trims
     @params = params
@@ -42,14 +46,47 @@ class StaticPagesController < ApplicationController
   end
 
   def tco
-    
+    # TODO forgot repairs column on tesla
+    incentive = Incentive.find_by(state_code: params[:state_code]).amount
+    tesla = Tesla.find(params[:tesla_trim])
+    edmund = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
+    @columns = []
+    @tesla_values = []
+    @vehicle_values = []
+    tesla.attributes.each do |column, value|
+      #TODO need to add repairs
+      costs = ["insurance", "maintenance", "taxes_and_fees", "financing", "depreciation", "fuel", "tax_credit"]
+      next unless costs.include? column
+      next unless value > BigDecimal("0")
+
+      @columns.push(column)
+      if column == "tax_credit"
+        @tesla_values.push(incentive.to_i)
+      else
+        @tesla_values.push(value.to_i)
+      end
+
+      if column == "taxes_and_fees"
+        @vehicle_values.push(edmund["taxandfees"]["total"].to_i)
+      elsif column == "tax_credit"
+        @vehicle_values.push(edmund["taxcredit"].to_i)
+      else
+        @vehicle_values.push(edmund[column]["total"].to_i)
+      end
+    end
+    binding.pry
     # @tco = params
     # @tco = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
   end
-  # "utf8"=>"✓", "year"=>"2011", "style_id"=>"acura_nice_submodel_1_edmund_id_1", "zipcode"=>"e",
-  # "state_code"=>"d", "tesla_model"=>"60", "tesla_trim"=>"6"
-
-  private
+  # t.decimal :insurance, :precision => 8, :scale => 2, default: 0
+  # t.decimal :maintenance, :precision => 8, :scale => 2, default: 0
+  # t.decimal :taxes_and_fees, :precision => 8, :scale => 2, default: 0
+  # t.decimal :financing, :precision => 8, :scale => 2, default: 0
+  # t.decimal :depreciation, :precision => 8, :scale => 2, default: 0
+  # t.decimal :fuel, :precision => 8, :scale => 2, default: 0
+  # t.decimal :tax_credit, :precision => 8, :scale => 2, default: 0
+  # t.decimal :total, :precision => 8, :scale => 2
+  # private
 
   def load_makes
     @makes = Make.all
