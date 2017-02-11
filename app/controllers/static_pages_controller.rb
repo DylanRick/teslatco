@@ -47,46 +47,42 @@ class StaticPagesController < ApplicationController
 
   def tco
     # TODO forgot repairs column on tesla
-    incentive = Incentive.find_by(state_code: params[:state_code]).amount
-    tesla = Tesla.find(params[:tesla_trim])
+    @tco_errors = false
     edmund = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
-    @columns = []
-    @tesla_values = []
-    @vehicle_values = []
-    tesla.attributes.each do |column, value|
-      #TODO need to add repairs
-      costs = ["insurance", "maintenance", "taxes_and_fees", "financing", "depreciation", "fuel", "tax_credit"]
-      next unless costs.include? column
-      next unless value > BigDecimal("0")
+    if edmund.nil?
+      @tco_errors = true
+    else
+      incentive = Incentive.find_by(state_code: params[:state_code]).try(:amount)
+      tesla = Tesla.find(params[:tesla_trim])
+      @columns = []
+      @tesla_values = []
+      @vehicle_values = []
+      tesla.attributes.each do |column, value|
+        #TODO need to add repairs
+        costs = ["insurance", "maintenance", "taxes_and_fees", "financing", "depreciation", "fuel", "tax_credit"]
+        next unless costs.include? column
+        next unless value > BigDecimal("0")
+        next if column == "tax_credit" && incentive.nil?
 
-      @columns.push(column)
-      if column == "tax_credit"
-        @tesla_values.push(incentive.to_i)
-      else
-        @tesla_values.push(value.to_i)
+        @columns.push(column)
+        if column == "tax_credit"
+          @tesla_values.push(incentive.to_i)
+        else
+          @tesla_values.push(value.to_i)
+        end
+
+        if column == "taxes_and_fees"
+          @vehicle_values.push(edmund["taxandfees"]["total"].to_i)
+        elsif column == "tax_credit"
+          @vehicle_values.push(edmund["taxcredit"].to_i)
+        else
+          @vehicle_values.push(edmund[column]["total"].to_i)
+        end
       end
 
-      if column == "taxes_and_fees"
-        @vehicle_values.push(edmund["taxandfees"]["total"].to_i)
-      elsif column == "tax_credit"
-        @vehicle_values.push(edmund["taxcredit"].to_i)
-      else
-        @vehicle_values.push(edmund[column]["total"].to_i)
-      end
+      @columns.map! {|c| c.gsub("_", " ").capitalize }
     end
-    binding.pry
-    # @tco = params
-    # @tco = Edmund.new.used_tco(params[:style_id], params[:zipcode], params[:state_code])
   end
-  # t.decimal :insurance, :precision => 8, :scale => 2, default: 0
-  # t.decimal :maintenance, :precision => 8, :scale => 2, default: 0
-  # t.decimal :taxes_and_fees, :precision => 8, :scale => 2, default: 0
-  # t.decimal :financing, :precision => 8, :scale => 2, default: 0
-  # t.decimal :depreciation, :precision => 8, :scale => 2, default: 0
-  # t.decimal :fuel, :precision => 8, :scale => 2, default: 0
-  # t.decimal :tax_credit, :precision => 8, :scale => 2, default: 0
-  # t.decimal :total, :precision => 8, :scale => 2
-  # private
 
   def load_makes
     @makes = Make.all

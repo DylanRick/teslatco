@@ -5,6 +5,7 @@ class Model < ActiveRecord::Base
 
   def self.get_models(make)
     models_json = Edmund.new.tco_models(make.edmund_id)["models"]
+    binding.pry
     return nil if models_json.nil?
 
     models_json.each do |model|

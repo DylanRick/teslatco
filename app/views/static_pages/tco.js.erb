@@ -1,2 +1,48 @@
+<% if @tco_errors %>
+  <% flash[:alert] = "TCO data not found for this model. Try again." %>
+  window.location.reload()
+<% else %>
+  var columns = <%= @columns.inspect.html_safe %>;
+  var otherCar = <%= @vehicle_values.inspect.html_safe %>;
+  var tesla = <%= @tesla_values.inspect.html_safe %>;
 
-console.log('hi')
+  var ctx = $("#myChart");
+  $(document).ready(function () {
+    console.log(columns)
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: columns, //insert column values here
+        datasets: [{
+          label: 'Other Car',
+          data: otherCar, //insert tco values here
+          backgroundColor: 'rgba(51, 51, 51, 0.8)',
+          borderColor: 'rgba(51, 51, 51, 1)',
+          borderWidth: 1
+        },{
+          label: 'Tesla',
+          data: tesla, //insert tesla values here
+          backgroundColor: 'rgba(204, 0, 0, 0.8)',
+          borderColor: 'rgba(204, 0, 0, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        maintainAspectRatio: true,
+        title: {
+              display: true,
+              text: 'Other Car vs Tesla',
+              fontSize: 24
+          },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1000
+            }
+          }]
+        }
+      }
+    });
+  });
+<% end %>
