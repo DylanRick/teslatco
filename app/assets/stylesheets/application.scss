@@ -29,6 +29,15 @@
      user-select:none;
  }
 
+ .error {
+   color: red;
+   padding: 10px;
+   border: 2px solid red;
+   border-radius: 5px;
+   font-size: 1.4em;
+   margin-bottom: 50px;
+ }
+
  .flash {
    color: white;
    font-size: 1.2em;
