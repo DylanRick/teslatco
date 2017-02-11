@@ -57,6 +57,9 @@ class StaticPagesController < ApplicationController
       @columns = []
       @tesla_values = []
       @vehicle_values = []
+      @tesla_total = 0
+      @vehicle_total = 0
+
       tesla.attributes.each do |column, value|
         #TODO need to add repairs
         costs = ["insurance", "maintenance", "taxes_and_fees", "financing", "depreciation", "fuel", "tax_credit"]
@@ -67,16 +70,21 @@ class StaticPagesController < ApplicationController
         @columns.push(column)
         if column == "tax_credit"
           @tesla_values.push(incentive.to_i)
+          @tesla_total -= incentive.to_i
         else
           @tesla_values.push(value.to_i)
+          @tesla_total += value.to_i
         end
 
         if column == "taxes_and_fees"
           @vehicle_values.push(edmund["taxandfees"]["total"].to_i)
+          @vehicle_total += edmund["taxandfees"]["total"].to_i
         elsif column == "tax_credit"
           @vehicle_values.push(edmund["taxcredit"].to_i)
+          @vehicle_total -= edmund["taxcredit"].to_i
         else
           @vehicle_values.push(edmund[column]["total"].to_i)
+          @vehicle_total += edmund[column]["total"].to_i
         end
       end
 

@@ -2,13 +2,13 @@
   <% flash[:alert] = "TCO data not found for this model. Try again." %>
   window.location.reload()
 <% else %>
+  $("#results").html("<%= j (render partial: 'total') %>")
   var columns = <%= @columns.inspect.html_safe %>;
   var otherCar = <%= @vehicle_values.inspect.html_safe %>;
   var tesla = <%= @tesla_values.inspect.html_safe %>;
 
   var ctx = $("#myChart");
   $(document).ready(function () {
-    console.log(columns)
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -44,5 +44,8 @@
         }
       }
     });
+    $('html, body').animate({
+        scrollTop: $("#myChart").offset().top
+    }, 1000);
   });
 <% end %>

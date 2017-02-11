@@ -17,6 +17,8 @@
  @import "materialize/components/color";
  // $primary-color: color("blue", "lighten-2") !default;
  // $secondary-color: color("yellow", "base") !default;
+ $tesla: rgb(229, 54, 55);
+ $other: rgb(51, 51, 51);
  @import 'materialize';
 
  input.select-dropdown {
@@ -53,5 +55,13 @@
 
  #myChart {
    margin-top: 100px;
-   margin-bottom: 100px;
+   margin-bottom: 25px;
+ }
+
+#vehicle-panel {
+   background-color: $other;
+ }
+
+#tesla-panel {
+   background-color: $tesla;
  }

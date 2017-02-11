@@ -64,7 +64,7 @@
         </div>
         <div id="tesla_trims">
           <div class="input-field col s12 l6">
-            <%= select_tag "tesla_trim", options_for_select(@teslas), :disabled => true %>
+            <%= select_tag "tesla_trim", :disabled => true %>
             <label>Trim</label>
           </div>
         </div>
@@ -76,9 +76,10 @@
   </div>
 </div>
 
-<div id="results" class="container">
-</div>
 
 <div class="container">
   <canvas id="myChart" width="400" height="300"></canvas>
+</div>
+
+<div id="results" class="container">
 </div>

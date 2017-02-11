@@ -5,7 +5,7 @@
   <% flash[:alert] = "TCO data not found for this model. Try again." %>
   window.location.reload()
 <% else %>
-  $("#year-styles").html("<%= j (render partial: 'styles') %>")
+  $("#year-styles").html("<%= j (render partial: 'styles') %>");
 <% end %>
 $("select").material_select();
 $("#make_id").change(function () {
